@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click the Button Game</title>
+  <style>
+    body { text-align: center; font-family: Arial; margin-top: 50px; }
+    button { padding: 20px 40px; font-size: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Click the Button Game</h1>
+  <p>Time Left: <span id="time">10</span> seconds</p>
+  <p>Score: <span id="score">0</span></p>
+  <button id="clickBtn" disabled>Click Me!</button>
+
+  <script>
+    let score = 0;
+    let timeLeft = 10;
+    const scoreDisplay = document.getElementById('score');
+    const timeDisplay = document.getElementById('time');
+    const button = document.getElementById('clickBtn');
+
+    button.onclick = () => {
+      score++;
+      scoreDisplay.textContent = score;
+    };
+
+    window.onload = () => {
+      button.disabled = false;
+      const timer = setInterval(() => {
+        timeLeft--;
+        timeDisplay.textContent = timeLeft;
+        if (timeLeft === 0) {
+          clearInterval(timer);
+          button.disabled = true;
+          alert(`Time's up! Your score is ${score}`);
+        }
+      }, 1000);
+    };
+  </script>
+
+</body>
+</html>
